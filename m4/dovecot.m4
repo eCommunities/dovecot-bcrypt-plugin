@@ -93,14 +93,14 @@ AC_DEFUN([DC_DOVECOT],[
 	fi,
 	use_install_dirs=yes)
 
-	AC_MSG_CHECKING([for "$dovecotdir/dovecot-config"])
-	if test -f "$dovecotdir/dovecot-config"; then
-		AC_MSG_RESULT([$dovecotdir/dovecot-config])
+	AC_MSG_CHECKING([for "$dovecotdir/dovecot.conf"])
+	if test -f "$dovecotdir/dovecot.conf"; then
+		AC_MSG_RESULT([$dovecotdir/dovecot.conf])
 	else
 		AC_MSG_RESULT([not found])
 		AC_MSG_NOTICE([])
-		AC_MSG_NOTICE([Use --with-dovecot=DIR to provide the path to the dovecot-config file.])
-		AC_MSG_ERROR([dovecot-config not found])
+		AC_MSG_NOTICE([Use --with-dovecot=DIR to provide the path to the dovecot.conf file.])
+		AC_MSG_ERROR([dovecot.conf not found])
 	fi
 
 	old=`pwd`
@@ -109,8 +109,8 @@ AC_DEFUN([DC_DOVECOT],[
 	cd $old
 	DISTCHECK_CONFIGURE_FLAGS="--with-dovecot=$abs_dovecotdir --without-dovecot-install-dirs"
 
-	eval `grep -i '^dovecot_[[a-z_]]*=' "$dovecotdir"/dovecot-config`
-	eval `grep '^LIBDOVECOT[[A-Z0-9_]]*=' "$dovecotdir"/dovecot-config`
+	eval `grep -i '^dovecot_[[a-z_]]*=' "$dovecotdir"/dovecot.conf`
+	eval `grep '^LIBDOVECOT[[A-Z0-9_]]*=' "$dovecotdir"/dovecot.conf`
 
 	dovecot_installed_moduledir="$dovecot_moduledir"
 
